@@ -51,4 +51,30 @@ describe '投稿のテスト' do
       end
     end
   end
+
+  describe '詳細画面のテスト' do
+    before do
+      visit list_path(list)
+    end
+    context '表示の確認' do
+      it '削除リンクが存在しているか' do
+        expect(page).to have_link '削除'
+      end
+      it '編集リンクが存在しているか' do
+        expect(page).to have_link '編集'
+      end
+    end
+    context 'リンクの遷移先の確認' do
+      it '編集の遷移先は編集画面か' do
+        edit_link = find_all('a')[3]
+        edit_link.click
+        expect(current_path).to eq('/lists/' + list.id.to_s + '/edit')
+      end
+    end
+    context 'list削除のテスト' do
+      it 'listの削除' do
+        expect{ list.destroy }.to change{ List.count }.by(-1)
+      end
+    end
+  end
 end
