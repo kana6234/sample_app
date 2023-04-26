@@ -39,4 +39,16 @@ describe '投稿のテスト' do
       end
     end
   end
+
+  describe '一覧画面のテスト' do
+    before do
+      visit lists_path
+    end
+    context '一覧の表示とリンクの確認' do
+      it '一覧表示画面に投稿されたものが表示されているか' do
+        expect(page).to have_content list.title
+        expect(page).to have_content list.body
+      end
+    end
+  end
 end
