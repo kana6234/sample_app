@@ -34,7 +34,7 @@ describe "投稿のテスト" do
       it "投稿後のリダイレクト先は正しいか" do
         fill_in "list[title]", with: Faker::Lorem.characters(number: 10)
         fill_in "list[body]", with: Faker::Lorem.characters(number: 30)
-        attach_file 'list[image]', "#{Rails.root}/spec/fixtures/sample.jpg"
+        attach_file "list[image]", "#{Rails.root}/spec/fixtures/sample.jpg"
         click_button "投稿"
         expect(page).to have_current_path list_path(List.last)
       end
